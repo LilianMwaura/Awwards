@@ -41,3 +41,12 @@ def update_profile(request):
         else:
             form = ProfileForm()
     return render(request, 'update-profile.html', {'form': form})
+
+@login_required(login_url='/accounts/login/')
+def profile(request,pk):
+    
+    user = User.objects.get(pk = pk)
+    profiles = Profile.objects.filter(user = user).all()
+    current_user = request.user
+    projects = Project.objects.filter(user = user).all()
+    return render(request,'profile.html',{"current_user":current_user,"projects":projects, "user":user, "profiles":profiles})
