@@ -63,4 +63,18 @@ def search_results(request):
     message="You haven't searched for any term."  
     projects = Project.objects.all()
     return render(request,'search.html',{"message":message,"users":searched_projects,"projects":projects}) 
+@login_required(login_url='/accounts/login/')    
+def submit_project(request):
+    form = ProjectForm(request.POST, request.FILES)
+    if request.method == 'POST':  
+        if form.is_valid():
+            proj = form.save(commit=False)
+        proj.user = request.user
+        proj.save()
+        return redirect ('index')
     
+    else:
+        form = ProjectForm()
+    
+    return render(request, 'submit.html', {'form': form})
+      
