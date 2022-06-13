@@ -77,4 +77,58 @@ def submit_project(request):
         form = ProjectForm()
     
     return render(request, 'submit.html', {'form': form})
-      
+def site_details(request,id):
+    project = get_object_or_404(Project,id=id)
+    
+    reviews = Review.objects.all().filter(project_id=id)
+    form = RateForm(request.POST)
+    if request.method == 'POST':
+        
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.user = user
+            rate.project = project
+            rate.save()
+            return redirect('site_details')
+    else:
+        form = RateForm()    
+    
+    context = {
+        'project':project,
+        'form':form,
+       'reviews':reviews,
+    }
+    
+    return render(request,'site-details.html',context)
+
+@login_required
+def rate_project(request, id):
+    form=RateForm()
+    project = Project.objects.get(id=id)
+    user = request.user
+    # reviews = Rate.objects.all().filter(project_id=pk)
+    if request.method == 'POST':
+        form = RateForm(request.POST)
+        if form.is_valid():
+         
+            rate = form.save(commit=False)
+            rate.user = user
+            rate.project = project
+            rate.save()
+            return redirect('site_details', id)
+        
+    else:
+        form= RateForm()    
+    
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
+        return Response(serializers.data)  
+    
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        all_projects = Project.objects.all()
+        serializers = ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)     
