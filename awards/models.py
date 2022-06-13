@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from tinymce.models import HTMLField
 from django.db.models import Q
+
 # Create your models here.
+
 class Profile(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE)
     profile_picture = CloudinaryField('image')
@@ -13,6 +15,7 @@ class Profile(models.Model):
     username = models.CharField(max_length=100,default='')
     def __str__(self):
         return self.user 
+
 class Project(models.Model):   
     user = models.ForeignKey(User,on_delete = models.CASCADE, related_name='project_user')
     title = models.CharField(max_length=100)
