@@ -43,3 +43,11 @@ RATE_CHOICES = [
 	(9,'9 - Excellent'),
 	(10, '10 - Perfect'), 
 ]
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete = models.CASCADE)
+    design = models.PositiveSmallIntegerField(choices=RATE_CHOICES, default=5) 
+    usability =models.PositiveSmallIntegerField(choices=RATE_CHOICES, default=5)  
+    content = models.PositiveSmallIntegerField(choices=RATE_CHOICES, default=5)
+    comment = models.CharField(max_length=250, blank=True,default='')  
+    overall = models.IntegerField(blank=True,default=0) 
