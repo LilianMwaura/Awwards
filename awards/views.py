@@ -50,3 +50,17 @@ def profile(request,pk):
     current_user = request.user
     projects = Project.objects.filter(user = user).all()
     return render(request,'profile.html',{"current_user":current_user,"projects":projects, "user":user, "profiles":profiles})
+
+@login_required
+def search_results(request):
+    
+  if 'search_user' in request.GET and request.GET["search_user"]:
+    search_term = request.GET.get('search_user')
+    searched_projects = Project.search_project(search_term)
+    message = f"{search_term}"
+    return render(request,'search.html',{"message":message,"users":searched_projects})
+  else:
+    message="You haven't searched for any term."  
+    projects = Project.objects.all()
+    return render(request,'search.html',{"message":message,"users":searched_projects,"projects":projects}) 
+    
