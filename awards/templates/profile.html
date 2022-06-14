@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static%}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div style="font-size: 80px;">
+                <h1 class="profile">PROFILE</h1>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 profile-details">
+            {% for profile in profiles %}
+            <div class="m-2 p-3 text-center">
+
+                <img class="prof-pic" src="{{profile.profile_picture.url}}" alt="">
+                <p class="mt-2">{{profile.user}}</p>
+            </div>
+            <p><i class="fas fa-quote-right me-2"></i>{{profile.bio}}</p>
+            <h6>CONTACT INFORMATION</h6>
+            <p><i class="far fa-envelope me-2"></i>{{profile.email}}</p>
+            <p><i class="fas fa-phone me-2"></i>+254{{profile.phone_number}}</p>
+            {% endfor %}
+            <div>
+                <h6>PROJECTS SUBMITTED</h6>
+                {% for project in projects%}
+                <p>{{project.title}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div class="container quote text-center">
+    <p>"Who knew failure would make you better."</p>
+</div>
+{% endblock %}
