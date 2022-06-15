@@ -4,7 +4,7 @@ scroll-behavior: smooth;
 }
 
 p, li {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: smaller;
     font-weight: bolder;    
 }
@@ -15,12 +15,12 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Raleway';
+    font-family: 'Poppins';
     /* font-weight: bolder;   */
 }
 
 .login-btn {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: smaller;
     width: 150px;
     border-radius: 0%;
@@ -38,17 +38,17 @@ h6 {
 }
 
 form{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: smaller;
     font-weight: bolder;    
 }
 
 ::placeholder {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: smaller;
     /* font-weight: bolder;   */
 }
-
+ 
 a {
     color: #B8926A;
 }
@@ -198,7 +198,7 @@ font-weight: bold;
     font-weight: normal;
 }
 .caro-btn {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: smaller;
     width: 100px;
     border-radius: 0%;
